@@ -194,7 +194,7 @@ class REST extends MethodAggregator {
 
 	}
 
-	attachQueueJobsResponder ({urlPath, verbMethod}) {
+	attachQueueJobsResponder ({urlPath, verbMethod, continueOnNotFound}) {
 
 		const verb = this.method(verbMethod).verb(urlPath);
 
@@ -202,9 +202,17 @@ class REST extends MethodAggregator {
 
 			const message = this._payloadIssuer.message.queueJobs();
 			message.tracker_id = request.params.trackerId;
-			await message.load();
+			await message.load(
+				'method',
+				'state',
+				'creation_timestamp',
+				'update_timestamp',
+				'retries'
+			);
 
 			if (!message.message_id) {
+				if (continueOnNotFound)
+					return {message};
 				response.rest.status(STATUS_CODES.NOT_FOUND);
 				response.rest.addError({
 					id:message.tracker_id,

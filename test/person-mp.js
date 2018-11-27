@@ -21,9 +21,10 @@ methodProcessor.methods.createPerson.prepare().then(() => {
 		);
 		message.payload = {data:message.payload.data};
 		setTimeout(async () => {
+			console.log('resolved');
 			await message.ack();
-			await message.resolve();
-		}, 120000);
+			await message.resolve(30000);
+		}, 30000);
 	}).on('error.async', (event, error, message) => console.log(event, error, message.unique_id)).run();
 
 }).catch((error) => console.log(error));
