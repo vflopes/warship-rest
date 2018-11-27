@@ -4,7 +4,10 @@
   "description": "Warship REST Payload Issuer",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --fix ./"
+    "lint": "./node_modules/.bin/eslint --fix ./",
+    "test": "bash test/run.sh",
+    "test:integration": "mocha \"./test/**/*.spec.js\"",
+    "serve:docs": "node_modules/.bin/docsify serve ./docs"
   },
   "repository": {
     "type": "git",
@@ -31,7 +34,10 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "eslint": "^5.9.0",
+    "mocha": "^5.2.0",
     "polka": "^0.5.1"
   }
 }
