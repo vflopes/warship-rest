@@ -4,7 +4,7 @@
   "description": "Warship REST Payload Issuer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "./node_modules/.bin/eslint --fix ./"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "dependencies": {
     "@warshipjs/core": "^1.0.1",
     "body-parser": "^1.18.3",
+    "js-yaml": "^3.12.0",
     "js2xmlparser": "^3.0.0",
     "qs": "^6.5.2",
     "shortid": "^2.2.14",
