@@ -26,7 +26,7 @@ class REST extends MethodAggregator {
 
 	attach (routeOptions = {}) {
 
-		for (const middleware of routeOptions.use) {
+		for (let middleware of routeOptions.use) {
 			if (typeof middleware === 'string') {
 				if (this._middlewares.has(middleware)) {
 					this.method(routeOptions.verbMethod).verb(routeOptions.urlPath).step(
@@ -34,7 +34,10 @@ class REST extends MethodAggregator {
 					);
 					continue;
 				}
-				this['attach'+middleware.charAt(0).toUpperCase()+middleware.substring(1)](routeOptions);
+				middleware = 'attach'+middleware.charAt(0).toUpperCase()+middleware.substring(1);
+				if (!Reflect.has(this, middleware))
+					throw new Error(`Unknown pre-built middleware: "${middleware}"`);
+				this[middleware](routeOptions);
 				continue;
 			}
 			this.method(routeOptions.verbMethod).verb(routeOptions.urlPath).step(middleware);
@@ -57,7 +60,7 @@ class REST extends MethodAggregator {
 			cacheKey = crypto
 				.createHash('sha1')
 				.update(verbMethod)
-				.update(response.rest.url(false).toString())
+				.update(response.rest.url(false).pathname)
 				.digest('hex');
 
 		return this._options.cachePrefix+':'+cacheKey;

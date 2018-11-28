@@ -116,14 +116,6 @@ const startRESTCRUD = async () => {
 	).listen();
 
 	rest
-		.attach(viewPerson)
-		.attach(listPerson)
-		.attach(createPerson)
-		.attach(updatePerson)
-		.attach(deletePerson)
-		.attach(createPersonAsync)
-		.attach(personQueueJobs)
-		.apply(app)
 		.register(
 			'dataResponder',
 			({message,response}) => {
@@ -136,6 +128,14 @@ const startRESTCRUD = async () => {
 				response.rest.end();
 			}
 		)
+		.attach(viewPerson)
+		.attach(listPerson)
+		.attach(createPerson)
+		.attach(updatePerson)
+		.attach(deletePerson)
+		.attach(createPersonAsync)
+		.attach(personQueueJobs)
+		.apply(app)
 		.on('error', (error) => console.log(error));
 
 	return new Promise((resolve, reject) => {

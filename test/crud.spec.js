@@ -18,13 +18,29 @@ describe('AsyncEventEmitter', function () {
 	});
 
 	afterEach(async function () {
+		this.timeout(0);
+		await (new Promise((resolve) => restCrud.app.server.close(resolve)));
 		await personMP.methodProcessor.stop(true);
 		await restCrud.payloadIssuer.stop(true);
-		await (new Promise((resolve) => restCrud.app.close(resolve)));
 	});
 
-	it('Should', function (done) {
-
+	it('Should create an entity', function (done) {
+		chai
+		.request(restCrud.app.server)
+		.post('/person')
+		.send({
+			data:{
+				type:'person',
+				attributes:{
+					name:'Victor'
+				}
+			}
+		})
+		.end((error, response) => {
+			expect(error).to.be.null;
+			expect(response).to.have.status(201);
+			done();
+		});
 	});
 
 });
