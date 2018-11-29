@@ -7,6 +7,7 @@
     "lint": "./node_modules/.bin/eslint --fix ./",
     "test": "bash test/run.sh",
     "test:integration": "mocha \"./test/**/*.spec.js\"",
+    "test:unit": "mocha \"./test/**/*.unit.js\"",
     "serve:docs": "node_modules/.bin/docsify serve ./docs"
   },
   "repository": {

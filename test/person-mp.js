@@ -104,6 +104,7 @@ const startPersonMP = async () => {
 					{id:personId}
 				)
 			);
+			message.numeric_code = 200;
 			message.payload = {data:message.payload.data};
 			await message.ack();
 			await message.resolve();
