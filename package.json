@@ -1,6 +1,6 @@
 {
   "name": "@warshipjs/rest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Warship REST Payload Issuer",
   "main": "index.js",
   "scripts": {
