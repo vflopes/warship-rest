@@ -1,3 +1,5 @@
+![logo](_media/logo.svg)
+
 # Warship REST <small>payload issuer</small>
 
 *A decorator to create a REST payload issuer for Warship*
