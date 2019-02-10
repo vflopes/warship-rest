@@ -26,9 +26,9 @@
   },
   "homepage": "https://github.com/vflopes/warship-rest#readme",
   "dependencies": {
-    "@warshipjs/core": "^1.0.1",
+    "@warshipjs/core": "^2.1.1",
     "body-parser": "^1.18.3",
-    "js-yaml": "^3.12.0",
+    "js-yaml": "^3.12.1",
     "js2xmlparser": "^3.0.0",
     "qs": "^6.5.2",
     "uuid": "^3.3.2",
@@ -36,10 +36,10 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chai-http": "^4.2.0",
+    "chai-http": "^4.2.1",
     "docsify-cli": "^4.3.0",
-    "eslint": "^5.9.0",
+    "eslint": "^5.13.0",
     "mocha": "^5.2.0",
-    "polka": "^0.5.1"
+    "polka": "^0.5.2"
   }
 }

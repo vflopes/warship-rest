@@ -154,15 +154,16 @@ class REST extends MethodAggregator {
 			message.generateTrackerId();
 
 			try {
-				await message.forward();
 
-				if (isAsync)
+				if (isAsync) {
+					await message.forward();
 					return {message};
+				}
 
 				return {
-					message:await this._payloadIssuer
-						.receivers[this._options.receiver]
-						.processed(message, outMethod)
+					message:await message.commit(
+						this._payloadIssuer.receivers[this._options.receiver]
+					)
 				};
 			} catch (error) {
 				error.id = message.tracker_id;
