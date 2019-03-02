@@ -166,6 +166,8 @@ class REST extends MethodAggregator {
 					)
 				};
 			} catch (error) {
+				if (error.tracker_id === message.tracker_id)
+					return {message:error};
 				error.id = message.tracker_id;
 				throw error;
 			}
